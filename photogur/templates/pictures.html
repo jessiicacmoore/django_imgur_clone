@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Photogur</title>
+</head>
+<body>
+    <header>
+        <h1>Photogur</h1>
+        <h2>The greatest photo hosting site</h2>
+    </header>
+    <main>
+        {% for picture in pictures %}
+            <figure>
+                <img src="{{ picture.url }}" alt="{{ picture.title }}">
+                <figcaption>
+                    <h3>
+                        {{ picture.title }}
+                    </h3>
+                    <p>
+                        {{ picture.artist }}
+                    </p>
+                </figcaption>
+                <div class="comments">
+                    <p><strong>Comments:</strong> {{ picture.comments.count }}</p>   
+                </div>
+            </figure>
+        {% endfor %}
+    </main>
+</body>
+</html>

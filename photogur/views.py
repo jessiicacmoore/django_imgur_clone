@@ -3,5 +3,5 @@ from django.shortcuts import render
 
 
 def pictures(request):
-    response = render(request, 'index.html')
+    response = render(request, 'pictures.html')
     return HttpResponse(response)

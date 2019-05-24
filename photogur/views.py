@@ -1,7 +1,10 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
+from photogur.models import Picture
+
 
 def pictures(request):
-    response = render(request, 'pictures.html')
+    context = {'pictures': Picture.objects.all()}
+    response = render(request, 'pictures.html', context)
     return HttpResponse(response)

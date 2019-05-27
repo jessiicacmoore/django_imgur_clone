@@ -18,4 +18,8 @@ from django.urls import path
 
 from photogur import views
 
-urlpatterns = [path("admin/", admin.site.urls), path("pictures/", views.pictures)]
+urlpatterns = [
+    path("", views.root),
+    path("admin/",admin.site.urls),
+    path("pictures/", views.pictures)
+    ]

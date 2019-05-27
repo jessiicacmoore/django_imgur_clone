@@ -13,6 +13,8 @@ def pictures(request):
     return HttpResponse(response)
 
 def picture_show(request, id):
+    picture = Picture.objects.get(pk=id)    
     context = {'picture': picture}
-    picture = Picture.objects.get(pk=id)
+    response = render(request, 'picture.html', context)
+    return HttpResponse(response)
     

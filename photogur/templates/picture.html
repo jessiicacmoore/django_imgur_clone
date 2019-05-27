@@ -11,5 +11,16 @@
     <h2>By {{picture.artist}}</h2>
 
     <img src="{{picture.url}}" alt="{{picture.title}}">
+
+    <h2>Comments:</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <p>{{comment.message}}</p>
+                <p>From: <strong>{{comment.name}}</strong></p>
+                <p>{{comment.created_at}}</p>
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

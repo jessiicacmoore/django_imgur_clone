@@ -1,18 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>{{picture.title}}</h2>
-    <h3>By {{picture.artist}}</h3>
+    <main class="picture-page-content">
+        <div class="container">
+            <h2>{{picture.title}}</h2>
+            <h3>By {{picture.artist}}</h3>
+        </div>
+    
+        <img src="{{picture.url}}" alt="{{picture.title}}">
 
-    <img src="{{picture.url}}" alt="{{picture.title}}">
-
-    <h3>Comments:</h3>
-    <ul>
-        {% for comment in comments %}
-            <li>
-                <p>{{comment.message}}</p>
-                <p>From: <strong>{{comment.name}}</strong></p>
-                <p>{{comment.created_at}}</p>
-            </li>
-        {% endfor %}
-    </ul>
+        <div class="container img-comments-container">
+                <h3>Comments:</h3>
+                <ul class="comments">
+                    {% for comment in comments %}
+                        <li>
+                            <p class="message">{{comment.message}}</p>
+                            <p class="name">-{{comment.name}}</p>
+                            <p class="date">{{comment.created_at}}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+        </div>
+    </main>
 {% endblock %}

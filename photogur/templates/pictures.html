@@ -1,24 +1,15 @@
 {% extends 'base.html' %}
-{% block content %}
-    <main>
-        {% for picture in pictures %}
-            <a href="{% url 'picture_details' id=picture.pk %}">
-                <figure>
-                    <img src="{{ picture.url }}" alt="{{ picture.title }}">
-                    <figcaption>
-                        <h3>
-                            {{ picture.title }}
-                        </h3>
-                        <p>
-                            {{ picture.artist }}
-                        </p>
-                    </figcaption>
-                    <div class="comments">
-                        <p><strong>Comments:</strong> {{ picture.comments.count }}</p>   
-                    </div>
-                </figure>
-            </a>
-        {% endfor %}
-    </main>
-{% endblock %}
 
+{% block content %}
+<ul class="container">
+  {% for picture in pictures %}
+    <a href="{% url 'picture_details' id=picture.pk %}">
+        <li class="img-card">
+            <img src="{{ picture.url }}" alt="{{ picture.title }}" />
+            <p>{{ picture.title }} by {{ picture.artist }}</p>
+        </li>
+    </a>
+  {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color: #777;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #777;
+}
+
+/* Header */
+
+.header {
+  border-bottom: 0.25px solid #ddd;
+  padding: 2em 0;
+}
+
+.header h1 {
+  font-size: 2em;
+  font-weight: 800;
+  width: 95%;
+  margin: 0 auto;
+}
+
+/* Pictures page main */
+
+.container {
+  padding: 2em 0;
+  margin: 0 auto;
+  width: 80%;
+  display: grid;
+  grid-gap: 1em;
+}
+
+.img-card {
+  height: 100%;
+  padding: 0.5em;
+  border: 0.25px solid #ddd;
+  display: grid;
+  justify-content: space-between;
+}
+
+.img-card p {
+  padding: 1em;
+  flex-basis: auto;
+}
+
+/* footer */
+
+footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 0.5em 0;
+}
+
+@media screen and (min-width: 600px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+

@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Photogur</title>
-</head>
-<body>
-    <header>
-        <h1>Photogur</h1>
-        <h2>The greatest photo hosting site</h2>
-    </header>
+{% extends 'base.html' %}
+{% block content %}
     <main>
         {% for picture in pictures %}
             <a href="{% url 'picture_details' id=picture.pk %}">
@@ -31,5 +20,5 @@
             </a>
         {% endfor %}
     </main>
-</body>
-</html>
+{% endblock %}
+

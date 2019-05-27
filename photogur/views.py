@@ -13,5 +13,6 @@ def pictures(request):
     return HttpResponse(response)
 
 def picture_show(request, id):
+    context = {'picture': picture}
     picture = Picture.objects.get(pk=id)
     

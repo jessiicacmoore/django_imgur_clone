@@ -1,15 +1,13 @@
-{% extends 'base.html' %}
-
-{% block content %}
-  <ul class="img-card-container">
-    {% for picture in pictures %}
-          <li class="img-card">
-              <img class="img" src="{{ picture.url }}" alt="{{ picture.title }}" />
-              <a href="{% url 'picture_details' id=picture.pk %}">
-                <p>{{ picture.title }} by {{ picture.artist }}</p>
-              </a>
-          </li>
-    {% endfor %}
-  </ul>
+{% extends 'base.html' %} {% block content %}
+<ul class="img-card-container">
+  {% for picture in pictures %}
+  <li class="img-card">
+    <img class="img" src="{{ picture.url }}" alt="{{ picture.title }}" />
+    <a href="{% url 'picture_details' id=picture.pk %}">
+      <p>{{ picture.title }} by {{ picture.artist }}</p>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
 
 {% endblock %}

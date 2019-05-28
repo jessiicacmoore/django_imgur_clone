@@ -14,5 +14,6 @@ class Comment(models.Model):
     name = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     message = models.TextField()
-    picture = models.ForeignKey(Picture, on_delete=models.CASCADE, related_name='comments')
-    
+    picture = models.ForeignKey(
+        Picture, on_delete=models.CASCADE, related_name="comments"
+    )

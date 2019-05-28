@@ -1,16 +1,15 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
-  <main class="search-results container">
-    <h3>Search results: {{ pictures|length }}</h3>
-    <ul class="img-results">
-      {% for picture in pictures %}
-        <li>
-          <img src="{{ picture.url }}" alt="{{ picture.title }}">
-          <p>{{ picture.title }} by {{ picture.artist }}</p>
-        </li>
-      {% endfor %}
-    </ul>
-  </main>
+<main class="search-results container">
+  <h3>Search results: {{ pictures | length }}</h3>
+  <ul class="img-results">
+    {% for picture in pictures %}
+    <li>
+      <img src="{{ picture.url }}" alt="{{ picture.title }}" />
+      <p>{{ picture.title }} by {{ picture.artist }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</main>
 
 {% endblock %}

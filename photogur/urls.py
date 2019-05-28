@@ -22,5 +22,6 @@ urlpatterns = [
     path("", views.root),
     path("admin/",admin.site.urls),
     path("pictures/", views.pictures),
-    path("pictures/<int:id>", views.picture_show, name='picture_details')
+    path("pictures/<int:id>", views.picture_show, name='picture_details'),
+    path("search", views.picture_search, name='picture_search'),
     ]

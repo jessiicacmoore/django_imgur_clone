@@ -12,9 +12,20 @@
   <body>
     <header class="header">
       <h1>Photogur</h1>
+
+      <form action="{% url 'picture_search' %}" method="GET">
+        <label for="picture-search">
+          <span>Search:</span>
+          <input type="search" id="picture-search" name="query">
+        </label>
+
+        <input type="submit" value="Search">
+      </form>
     </header>
+
     {% block content %}
     {% endblock %}
+
     <footer class="footer">&copy; Jessica Moore</footer>
   </body>
 </html>

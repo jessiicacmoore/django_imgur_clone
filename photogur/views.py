@@ -27,3 +27,7 @@ def picture_search(request):
   context = {'pictures': search_results, 'query': query}
   response = render(request, 'search_results.html', context)
   return HttpResponse(response)
+
+
+def create_comment(request):
+  pass

@@ -31,6 +31,7 @@ img {
   padding: 0.75em 0;
 }
 
+
 /* Header */
 
 .header {
@@ -38,11 +39,16 @@ img {
   padding: 2em 0;
 }
 
+.header-container {
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .header h1 {
   font-size: 2em;
   font-weight: 800;
-  width: 95%;
-  margin: 0 auto;
+  padding-bottom: 0.5em;
 }
 
 /* Pictures page main */
@@ -120,10 +126,40 @@ footer {
   margin-top: 2em;
 }
 
+/* search results */
+
+.img-results {
+  max-width: 700px;
+  display: grid;
+  grid-gap: 1em;
+}
+
+.img-results li {
+  padding: 2em;
+  margin: 0 auto;
+  border-bottom: 0.25px solid #ddd;
+  display: grid;
+  grid-gap: 1em;
+}
+
+
+.img-results img {
+  width: 100%;
+}
+
+
 @media screen and (min-width: 600px) {
   .img-card-container {
     grid-template-columns: repeat(2, 1fr);
   }
+
+
+  .img-results li {
+    margin: 0;
+    grid-template-columns: 300px 1fr;
+  }
+
+  
 }
 
 @media screen and (min-width: 1000px) {

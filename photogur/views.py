@@ -26,3 +26,4 @@ def picture_search(request):
   search_results = Picture.objects.filter(artist=query)
   context = {'pictures': search_results}
   response = render(request, 'search_results.html', context)
+  return HttpResponse(response)

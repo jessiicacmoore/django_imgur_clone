@@ -3,12 +3,12 @@
 {% block content %}
   <ul class="img-card-container">
     {% for picture in pictures %}
-      <a href="{% url 'picture_details' id=picture.pk %}">
           <li class="img-card">
-              <img src="{{ picture.url }}" alt="{{ picture.title }}" />
-              <p>{{ picture.title }} by {{ picture.artist }}</p>
+              <img class="img" src="{{ picture.url }}" alt="{{ picture.title }}" />
+              <a href="{% url 'picture_details' id=picture.pk %}">
+                <p>{{ picture.title }} by {{ picture.artist }}</p>
+              </a>
           </li>
-      </a>
     {% endfor %}
   </ul>
 

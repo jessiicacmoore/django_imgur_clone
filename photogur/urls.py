@@ -26,5 +26,6 @@ urlpatterns = [
     path("search", views.picture_search, name="picture_search"),
     path("comments/new", views.create_comment, name="create_comment"),
     path('login/', views.login_view, name="login"),
-    path('logout/', views.logout_view, name="logout")
+    path('logout/', views.logout_view, name="logout"),
+    path('signup/', views.signup, name="signup")
 ]

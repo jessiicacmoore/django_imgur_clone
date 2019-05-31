@@ -25,4 +25,5 @@ urlpatterns = [
     path("pictures/<int:id>", views.picture_show, name="picture_details"),
     path("search", views.picture_search, name="picture_search"),
     path("comments/new", views.create_comment, name="create_comment"),
+    path('login/', views.login_view, name="login")
 ]

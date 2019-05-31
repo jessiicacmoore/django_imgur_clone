@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 from photogur.models import Picture, Comment
-from photogur.forms import LoginForm
+from photogur.forms import LoginForm, PictureForm
 
 
 def root(request):
@@ -91,4 +91,18 @@ def signup(request):
     else:
         form = UserCreationForm()
     html_response = render(request, 'signup.html', {'form': form})
+    return HttpResponse(html_response)
+
+def new_picture_view(request):
+    if request.method == 'POST':
+        form = PictureForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            form.save()
+            return redirect("picture_details", id=instance.id)
+    else:
+        form = PictureForm()
+            
+    html_response = render(request, "new_picture.html", {'form': form})
     return HttpResponse(html_response)

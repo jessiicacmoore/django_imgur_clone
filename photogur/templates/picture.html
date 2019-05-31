@@ -3,6 +3,7 @@
   <div class="container">
     <h2>{{ picture.title }}</h2>
     <h3>By {{ picture.artist }}</h3>
+    <p>Uploaded by {{picture.user.username}}</p>
   </div>
 
   <img src="{{ picture.url }}" alt="{{ picture.title }}" />

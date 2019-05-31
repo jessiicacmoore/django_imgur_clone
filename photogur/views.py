@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 from photogur.models import Picture, Comment
@@ -68,3 +68,7 @@ def login_view(request):
     context = { 'form': form }
     http_response = render(request, 'login.html', context)
     return HttpResponse(http_response)
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/pictures')

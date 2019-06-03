@@ -109,3 +109,19 @@ def new_picture_view(request):
             
     html_response = render(request, "new_picture.html", {'form': form})
     return HttpResponse(html_response)
+
+@login_required
+def edit_picture_view(request, id):
+    if request.method == 'POST':
+        form = PictureForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            form.save()
+            return redirect("picture_details", id=instance.id)
+    else:
+        form = PictureForm()
+    picture = Picture.objects.get(id=id)
+    context = {'form': form, 'picture': picture}
+    html_response = render(request, "edit_picture.html", context)
+    return HttpResponse(html_response)

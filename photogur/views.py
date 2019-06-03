@@ -3,7 +3,9 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+
 
 
 from photogur.models import Picture, Comment
@@ -93,6 +95,7 @@ def signup(request):
     html_response = render(request, 'signup.html', {'form': form})
     return HttpResponse(html_response)
 
+@login_required
 def new_picture_view(request):
     if request.method == 'POST':
         form = PictureForm(request.POST)

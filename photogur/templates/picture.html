@@ -7,11 +7,14 @@
   </div>
 
   <img src="{{ picture.url }}" alt="{{ picture.title }}" />
+  {% if request.user.is_authenticated and picture.user == request.user %}
+  <a href="{% url 'picture_edit' id=picture.pk %}">Edit this picture</a>
+  {% endif %}
 
   <div class="container img-comments-container">
     <form action="{% url 'create_comment' %}" method="POST">
       {% csrf_token %}
-      <input type="hidden" name="picture" value="{{ picture.pk }}" />
+      <input type="hidden" name="picture" value="{{ picture.pk  }}" />
       <label for="user_message">Write a comment</label>
       <textarea name="message" id="user_message" cols="30" rows="1"></textarea>
       <label for="user_name">Name</label>

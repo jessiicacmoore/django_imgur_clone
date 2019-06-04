@@ -2,9 +2,9 @@
 
 {% block content %}
     <h2>edit page for picture {{ picture.id }}</h2>
-  <!-- <form action="{% url 'new_picture' %}" method="post">
+  <form action="{% url 'new_picture' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Sign up</button>
-  </form> -->
+  </form>
 {% endblock %}

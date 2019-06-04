@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth import authenticate, login, logout
@@ -112,6 +112,8 @@ def new_picture_view(request):
 
 @login_required
 def edit_picture_view(request, id):
+    picture = get_object_or_404(Picture, pk=id, user=request.user.pk)
+
     if request.method == 'POST':
         form = PictureForm(request.POST)
         if form.is_valid():
@@ -120,8 +122,8 @@ def edit_picture_view(request, id):
             form.save()
             return redirect("picture_details", id=instance.id)
     else:
-        form = PictureForm()
-    picture = Picture.objects.get(id=id)
+        form = PictureForm(instance=picture)
+    
     context = {'form': form, 'picture': picture}
     html_response = render(request, "edit_picture.html", context)
     return HttpResponse(html_response)

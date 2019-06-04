@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
 
-
 from photogur.models import Picture, Comment
 from photogur.forms import LoginForm, PictureForm
 
@@ -56,6 +55,8 @@ def create_comment(request):
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect("/pictures")
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -81,23 +82,26 @@ def logout_view(request):
 
 
 def signup(request):
-    if request.method == 'POST':
+    if request.user.is_authenticated:
+        return HttpResponseRedirect("/pictures")
+    if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
+            username = form.cleaned_data.get("username")
+            raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return HttpResponseRedirect("/pictures")
     else:
         form = UserCreationForm()
-    html_response = render(request, 'signup.html', {'form': form})
+    html_response = render(request, "signup.html", {"form": form})
     return HttpResponse(html_response)
+
 
 @login_required
 def new_picture_view(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = PictureForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
@@ -106,15 +110,16 @@ def new_picture_view(request):
             return redirect("picture_details", id=instance.id)
     else:
         form = PictureForm()
-            
-    html_response = render(request, "new_picture.html", {'form': form})
+
+    html_response = render(request, "new_picture.html", {"form": form})
     return HttpResponse(html_response)
+
 
 @login_required
 def edit_picture_view(request, id):
     picture = get_object_or_404(Picture, pk=id, user=request.user.pk)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = PictureForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
@@ -123,7 +128,7 @@ def edit_picture_view(request, id):
             return redirect("picture_details", id=instance.id)
     else:
         form = PictureForm(instance=picture)
-    
-    context = {'form': form, 'picture': picture}
+
+    context = {"form": form, "picture": picture}
     html_response = render(request, "edit_picture.html", context)
     return HttpResponse(html_response)

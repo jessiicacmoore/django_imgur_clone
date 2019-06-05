@@ -5,10 +5,11 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from .forms import CommentForm
 
 
 from photogur.models import Picture, Comment
-from photogur.forms import LoginForm, PictureForm
+from photogur.forms import LoginForm, PictureForm, CommentForm
 
 
 def root(request):
@@ -22,12 +23,21 @@ def pictures(request):
 
 
 def picture_show(request, id):
-    picture = Picture.objects.get(pk=id)
+    picture = get_object_or_404(Picture, pk=id)
     picture_comments = Comment.objects.filter(picture=id)
 
-    context = {"picture": picture, "comments": picture_comments}
-    response = render(request, "picture.html", context)
-    return HttpResponse(response)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid:
+            instance = form.save(commit=False)
+            instance.picture = picture
+            instance.save()
+    else:
+        form = CommentForm()
+
+    context = {"picture": picture, "comments": picture_comments, "form": form}
+    return render(request, "picture.html", context)
+
 
 
 def picture_search(request):

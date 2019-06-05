@@ -12,13 +12,9 @@
   {% endif %}
 
   <div class="container img-comments-container">
-    <form action="{% url 'create_comment' %}" method="POST">
+    <form method="POST">
       {% csrf_token %}
-      <input type="hidden" name="picture" value="{{ picture.pk  }}" />
-      <label for="user_message">Write a comment</label>
-      <textarea name="message" id="user_message" cols="30" rows="1"></textarea>
-      <label for="user_name">Name</label>
-      <input type="text" name="name" id="user_name" />
+      {{ form.as_p }}
       <button type="submit">Add comment</button>
     </form>
     <h3>Comments:</h3>
